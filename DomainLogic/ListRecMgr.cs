@@ -29,22 +29,6 @@ namespace DomainLogic
    {
       private List<ListRec> m_list;
 
-      private ListRecMgr m_listRecMgr;
-      protected ListRecMgr()
-      {
-      }
-      public static ListRecMgr Instance
-      {
-         get
-         {
-            if (m_listRecMgr == null)
-               m_listRecMgr = CreateListRecMgr();
-            return m_listRecMgr;
-         }
-      }
-
-      protected abstract ListRecMgr CreateListRecMgr();
-
       protected List<ListRec> TheList
       {
          get
@@ -95,6 +79,20 @@ namespace DomainLogic
 
    public class CustListRecMgr : ListRecMgr
    {
+      private static CustListRecMgr m_listRecMgr;
+      protected CustListRecMgr()
+      {
+      }
+      public static CustListRecMgr Instance
+      {
+         get
+         {
+            if (m_listRecMgr == null)
+               m_listRecMgr = new CustListRecMgr();
+            return m_listRecMgr;
+         }
+      }
+
       protected override void MapListRec(ListRec rec, LedgerModel model)
       {
          CustLedgerModel ledgerModel = model as CustLedgerModel;
@@ -110,10 +108,6 @@ namespace DomainLogic
          return new CustListRec();
       }
 
-      protected override ListRecMgr CreateListRecMgr()
-      {
-         return new CustListRecMgr();
-      }
       protected override void DoUpdate(ListRec to, ListRec from)
       {
          CustListRec toRec = to as CustListRec;
