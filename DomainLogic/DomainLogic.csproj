@@ -39,9 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IListRecMgr.cs" />
-    <Compile Include="LedgerRecords.cs" />
-    <Compile Include="ListRecMgr.cs" />
+    <Compile Include="ListRecMgr\IListRecMgr.cs" />
+    <Compile Include="LedgerRecs\LedgerRecords.cs" />
+    <Compile Include="ListRecMgr\ListRec.cs" />
+    <Compile Include="ListRecMgr\ListRecMgr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +51,7 @@
       <Name>DataLayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

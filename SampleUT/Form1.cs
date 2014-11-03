@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataLayer.Data;
+using DataLayer.DataService;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DataLayer;
 
 namespace SampleUT
 {
@@ -24,13 +25,13 @@ namespace SampleUT
 
 
 
-         CustomerData data = new CustomerData()
-         {
-            Property = "test this c# solution",
-         };
+         //CustomerData data = new CustomerData()
+         //{
+         //   Property = "test this c# solution",
+         //};
 
-         CustomerDataService ds = new CustomerDataService();
-         ds.InsertData(data);
+         //CustomerDataService ds = new CustomerDataService();
+         //ds.InsertData(data);
       }
    }
 }

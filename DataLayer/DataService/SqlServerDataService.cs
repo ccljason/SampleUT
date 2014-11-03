@@ -5,8 +5,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLayer.Data;
 
-namespace DataLayer
+namespace DataLayer.DataService
 {
    public abstract class SqlServerDataService : IDataService, IDisposable
    {
@@ -239,22 +240,5 @@ namespace DataLayer
             SqlConnect.Close();
          }
       }
-   }
-
-   public abstract class Data : IData
-   {
-      public int Id { get; set; }
-   }
-
-   public class CustomerData : Data
-   {
-      public string Property { get; set; }
-      public string Email { get; set; }
-   }
-
-   public class InventData : Data
-   {
-      public string Property { get; set; }
-      public string Category { get; set; }
    }
 }

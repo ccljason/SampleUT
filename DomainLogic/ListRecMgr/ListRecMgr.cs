@@ -1,30 +1,13 @@
-﻿using System;
+﻿using DataLayer.Data;
+using DomainLogic.LedgerRecs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLogic
+namespace DomainLogic.ListRecMgr
 {
-   /// <summary>
-   /// 
-   /// </summary>
-   public abstract class ListRec
-   {
-      public int Id { get; set; }
-      public string Property { get; set; }
-   }
-
-   public class CustListRec : ListRec
-   {
-      public string Email { get; set; } 
-   }
-
-   public class InventListRec : ListRec
-   {
-      public string Category { get; set; }
-   }
-
    public abstract class ListRecMgr : IListRecMgr
    {
       private List<ListRec> m_list;
@@ -59,17 +42,15 @@ namespace DomainLogic
          TheList.Remove(rec);
       }
 
-      public void LoadAll()
-      {
-      }
-
       public ListRec CreateListRec(LedgerModel ledgerModel)
       {
          ListRec listRec = CreateRec();
+         MapListRec(listRec, ledgerModel);
          return listRec;
       }
 
       protected abstract ListRec CreateRec();
+
       protected abstract void MapListRec(ListRec rec, LedgerModel model);
 
       protected abstract void DoUpdate(ListRec to, ListRec from);
@@ -79,6 +60,7 @@ namespace DomainLogic
 
    public class CustListRecMgr : ListRecMgr
    {
+      #region Singleton
       private static CustListRecMgr m_listRecMgr;
       protected CustListRecMgr()
       {
@@ -92,17 +74,25 @@ namespace DomainLogic
             return m_listRecMgr;
          }
       }
+      #endregion
 
       protected override void MapListRec(ListRec rec, LedgerModel model)
       {
          CustLedgerModel ledgerModel = model as CustLedgerModel;
+         if (ledgerModel == null)
+            return;
+         CustomerData ledgerModelData = ledgerModel.DataHolder as CustomerData;
+         if (ledgerModelData == null)
+            return;
          CustListRec listRec = rec as CustListRec;
-         if (ledgerModel == null || listRec == null)
+         if (listRec == null)
             return;
 
-         listRec.Id = ledgerModel.DataHolder.Id;
-         //listRec.Property = ledgerModel.DataHolder.
+         listRec.Id = ledgerModelData.Id;
+         listRec.Property = ledgerModelData.Property;
+         listRec.Email = ledgerModelData.Email;
       }
+
       protected override ListRec CreateRec()
       {
          return new CustListRec();
