@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace UnitTest
 {
@@ -14,6 +15,13 @@ namespace UnitTest
 
          // Try this:
          //http://stackoverflow.com/questions/20863180/in-a-unit-test-do-you-verify-and-assert
+
+
+         // Arrange
+
+         // Act
+
+         // Assert
 
       }
    }
