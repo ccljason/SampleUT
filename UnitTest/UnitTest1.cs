@@ -7,7 +7,7 @@ namespace UnitTest
    public class UnitTest1
    {
       [TestMethod]
-      public void TestMethod1()
+      public void UnitTestMethod1()
       {
          // theory:
          //http://stackoverflow.com/questions/1980108/verifying-a-method-was-called
