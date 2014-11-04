@@ -30,6 +30,7 @@ namespace DomainLogic.LedgerRecs
                m_data = CreateData();
             return m_data;
          }
+         set { m_data = value; }
       }
 
       protected IDataService DataService
